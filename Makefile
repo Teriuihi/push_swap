@@ -4,7 +4,7 @@ CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 
 MAIN=push_swap.c
-FUNCTIONS=validate.c sorted.c
+FUNCTIONS=validate.c sorted.c sorting_operations_1.c sorting_util.c
 LIBS=libft/libft.a
 
 FILES=$(addprefix functions/, $(FUNCTIONS)) $(MAIN)
