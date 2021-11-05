@@ -1,4 +1,4 @@
 #ifndef INTERNAL_H
 # define INTERNAL_H
-int	*validate(char **args, int len);
+int	*get_stack1(char **args, int len);
 #endif

@@ -11,7 +11,7 @@ int	contains(int needle, const int *haystack, int len)
 	return (0);
 }
 
-int	*validate(char **args, int len)
+int	*get_stack1(char **args, int len)
 {
 	int	*stack;
 	int	i;
