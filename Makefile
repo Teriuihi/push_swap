@@ -4,10 +4,10 @@ CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 
 MAIN=push_swap.c
-FUNCTIONS=validate.c
+FUNCTIONS=validate.c sorted.c
+LIBS=libft/libft.a
 
 FILES=$(addprefix functions/, $(FUNCTIONS)) $(MAIN)
-LIBS=libft/libft.a
 FILES_OBJ=$(FILES:.c=.o)
 
 all: $(NAME)

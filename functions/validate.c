@@ -1,6 +1,6 @@
 #include "../headers/libft.h"
 
-int	contains(int needle, const int *haystack, int len)
+int	ft_contains(int needle, const int *haystack, int len)
 {
 	while (len >= 0)
 	{
@@ -11,7 +11,7 @@ int	contains(int needle, const int *haystack, int len)
 	return (0);
 }
 
-int	*get_stack1(char **args, int len)
+int	*ft_get_stack1(char **args, int len)
 {
 	int	*stack;
 	int	i;
@@ -27,7 +27,7 @@ int	*get_stack1(char **args, int len)
 		stack[i] = ft_atoi(args[i + 1]);
 		if ((stack[i] == 0 && ((stack[i] + '0') != *args[i + 1] ||
 			ft_strlen(args[i + 1]) != 1)) ||
-			contains(stack[i], stack, i - 1))
+				ft_contains(stack[i], stack, i - 1))
 		{
 			free(stack);
 			return (NULL);
