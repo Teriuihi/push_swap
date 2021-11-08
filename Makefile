@@ -6,16 +6,17 @@ RM=rm -f
 MAIN=push_swap.c
 FUNCTIONS=validate.c sorted.c sorting_operations_1.c sorting_util.c
 LIBS=libft/libft.a
+LIB_FT=ft_calloc.c ft_atoi.c ft_isdigit.c ft_memset.c ft_memcpy.c \
+ft_putstr_fd.c ft_strlen.c
 
 FILES=$(addprefix functions/, $(FUNCTIONS)) $(MAIN)
-FILES_OBJ=$(FILES:.c=.o)
+FILES_OBJ=$(FILES:%.c=%.o)
+FILES_LIBS=$(LIB_FT:%.c:%.o)
 
 all: $(NAME)
 
-lib_ft:
+$(NAME): $(FILES_OBJ) $(FILES_LIBS)
 	$(MAKE) -C libft/
-
-$(NAME): $(FILES_OBJ) lib_ft
 	$(CC) $(CFLAGS) -o $(NAME) $(FILES_OBJ) $(LIBS)
 
 clean:
@@ -28,4 +29,4 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: make all clean fclean re lib_ft
+.PHONY: make all clean fclean re
