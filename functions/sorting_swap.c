@@ -3,11 +3,12 @@
 void sx(int *x, int x_len)
 {
 	int tmp;
+
 	if (x_len < 2)
 		return;
-	tmp = x[x_len - 2];
-	x[x_len - 2] = x[x_len - 1];
-	x[x_len - 1] = tmp;
+	tmp = x[0];
+	x[0] = x[1];
+	x[1] = tmp;
 }
 
 

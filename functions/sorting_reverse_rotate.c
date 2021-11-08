@@ -4,17 +4,18 @@ void rrx(int *x, int x_len)
 {
 	int tmp1;
 	int tmp2;
+	int i;
 
 	if (x_len < 2)
 		return;
+	i = 1;
 	tmp1 = x[0];
-	x_len -= 1;
-	while (x_len)
+	while (i < x_len)
 	{
-		tmp2 = x[x_len];
-		x[x_len] = tmp1;
+		tmp2 = x[i];
+		x[i] = tmp1;
 		tmp1 = tmp2;
-		x_len--;
+		i++;
 	}
 	x[0] = tmp1;
 }
