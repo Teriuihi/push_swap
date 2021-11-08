@@ -7,8 +7,8 @@ void rrx(int *x, int x_len)
 
 	if (x_len < 2)
 		return;
-	tmp1 = x[x_len - 1];
-	x_len -= 2;
+	tmp1 = x[0];
+	x_len -= 1;
 	while (x_len)
 	{
 		tmp2 = x[x_len];

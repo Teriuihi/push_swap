@@ -10,7 +10,7 @@ void rx(int *x, int x_len)
 		return;
 	i = 1;
 	tmp1 = x[0];
-	while (i < x_len - 1)
+	while (i < x_len)
 	{
 		tmp2 = x[i];
 		x[i] = tmp1;
