@@ -9,7 +9,7 @@ void	sb(int *b, int b_len);
 void	ss(int *a, int a_len, int *b, int b_len);
 int		pa(int **a, int a_len, int **b, int b_len);
 int		pb(int **a, int a_len, int **b, int b_len);
-void	ra(int *a, int a_len);
+void	ra(int *x, int x_len);
 void	rb(int *b, int b_len);
 void	rr(int *a, int a_len, int *b, int b_len);
 void	rra(int *a, int a_len);
