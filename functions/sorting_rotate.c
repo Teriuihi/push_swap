@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   sorting_rotate.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/10 21:27:50 by sappunn       #+#    #+#                 */
+/*   Updated: 2021/12/10 21:27:50 by sappunn       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/libft.h"
 
-void rx(int *x, int x_len)
+void	rx(int *x, int x_len)
 {
-	int tmp1;
-	int tmp2;
+	int	tmp1;
+	int	tmp2;
 
 	if (x_len < 2)
-		return;
+		return ;
 	tmp1 = x[0];
 	x_len -= 1;
 	while (x_len)
@@ -19,19 +31,19 @@ void rx(int *x, int x_len)
 	x[0] = tmp1;
 }
 
-void ra(int *a, int a_len)
+void	ra(int *a, int a_len)
 {
 	rx(a, a_len);
 	ft_putstr_fd("ra\n", 1);
 }
 
-void rb(int *b, int b_len)
+void	rb(int *b, int b_len)
 {
 	rx(b, b_len);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void rr(int *a, int a_len, int *b, int b_len)
+void	rr(int *a, int a_len, int *b, int b_len)
 {
 	rx(a, a_len);
 	rx(b, b_len);

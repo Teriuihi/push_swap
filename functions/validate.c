@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   validate.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/10 21:28:19 by sappunn       #+#    #+#                 */
+/*   Updated: 2021/12/10 21:28:19 by sappunn       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/libft.h"
 
 int	ft_contains(int needle, const int *haystack, int len)
@@ -25,9 +37,9 @@ int	*ft_get_stack1(char **args, int len)
 	while (i < len - 1)
 	{
 		stack[i] = ft_atoi(args[i + 1]);
-		if ((stack[i] == 0 && ((stack[i] + '0') != *args[i + 1] ||
-			ft_strlen(args[i + 1]) != 1)) ||
-				ft_contains(stack[i], stack, i - 1))
+		if ((stack[i] == 0 && ((stack[i] + '0') != *args[i + 1]
+					|| ft_strlen(args[i + 1]) != 1))
+			|| ft_contains(stack[i], stack, i - 1))
 		{
 			free(stack);
 			return (NULL);

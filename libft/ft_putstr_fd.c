@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_putstr_fd.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/10 21:30:54 by sappunn       #+#    #+#                 */
+/*   Updated: 2021/12/10 21:30:54 by sappunn       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include "../headers/libft.h"
 
@@ -9,7 +21,7 @@
  */
 int	ft_putstr_fd(char *s, int fd)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(s);
 	write(fd, s, len);
