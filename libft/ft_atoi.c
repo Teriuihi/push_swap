@@ -52,7 +52,7 @@ static int	convert(const char *str, int *success)
 		tmp = res;
 		res *= 10;
 		res -= (*str - '0');
-		if (tmp / 10 != tmp)
+		if ((res / 10) != tmp)
 			return (0);
 		str++;
 	}
