@@ -36,20 +36,28 @@ static int	ft_isspace(char c)
  *
  * @return 		Converted integer
  */
-static int	convert(const char *str)
+static int	convert(const char *str, int *success)
 {
 	int	res;
+	int	tmp;
 
 	if (!ft_isdigit(*str))
 		return (0);
+	while (*str == '0')
+		str++;
 	res = (*str - '0') * -1;
 	str++;
 	while (ft_isdigit(*str))
 	{
+		tmp = res;
 		res *= 10;
 		res -= (*str - '0');
+		if (tmp / 10 != tmp)
+			return (0);
 		str++;
 	}
+	if (*str == 0)
+		*success = 1;
 	return (res);
 }
 
@@ -61,10 +69,11 @@ static int	convert(const char *str)
  * @return	The converted integer or 0 on failure
  * 	(keep in mind 0 could be the converted integer)
  */
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int *success)
 {
 	int	negative;
 
+	*success = 0;
 	negative = -1;
 	while (ft_isspace(*str))
 		str++;
@@ -74,5 +83,5 @@ int	ft_atoi(const char *str)
 			negative = 1;
 		str++;
 	}
-	return (convert(str) * negative);
+	return (convert(str, success) * negative);
 }

@@ -27,6 +27,7 @@ int	*ft_get_stack1(char **args, int len)
 {
 	int	*stack;
 	int	i;
+	int	success;
 
 	if (len < 2)
 		return (NULL);
@@ -36,7 +37,7 @@ int	*ft_get_stack1(char **args, int len)
 	i = 0;
 	while (i < len - 1)
 	{
-		stack[i] = ft_atoi(args[i + 1]);
+		stack[i] = ft_atoi(args[i + 1], &success);
 		if ((stack[i] == 0 && ((stack[i] + '0') != *args[i + 1]
 					|| ft_strlen(args[i + 1]) != 1))
 			|| ft_contains(stack[i], stack, i - 1))

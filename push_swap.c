@@ -25,7 +25,7 @@
 int	main(int len, char **args)
 {
 	int	*a;
-	int	*b;
+//	int	*b;
 
 	a = ft_get_stack1(args, len);
 	if (!a)
