@@ -11,19 +11,25 @@
 /* ************************************************************************** */
 
 #include <limits.h>
+#include "../headers/internal.h"
 
-int	ft_is_sorted(int *arr, int len)
+int	ft_is_sorted(t_stack **top)
 {
-	int	last;
+	t_stack	*tmp;
+	int		last;
 
 	last = INT_MIN;
-	while (len)
+	tmp = *top;
+	if (last > tmp->value)
+		return (0);
+	last = tmp->value;
+	tmp = tmp->next;
+	while (tmp != *top)
 	{
-		if (last > *arr)
+		if (last > tmp->value)
 			return (0);
-		last = *arr;
-		len--;
-		arr++;
+		last = tmp->value;
+		tmp = tmp->next;
 	}
 	return (1);
 }

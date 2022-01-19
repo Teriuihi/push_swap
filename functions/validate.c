@@ -11,41 +11,52 @@
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
+#include "../headers/internal.h"
 
-int	ft_contains(int needle, const int *haystack, int len)
+int	ft_contains(int needle, t_stack **haystack)
 {
-	while (len >= 0)
+	t_stack	*tmp;
+
+	if (*haystack == NULL)
+		return (0);
+	tmp = *haystack;
+	if (tmp->value == needle)
+		return (1);
+	tmp = tmp->next;
+	while (tmp != *haystack && tmp != NULL)
 	{
-		if (haystack[len] == needle)
+		if (tmp->value == needle)
 			return (1);
-		len--;
+		tmp = tmp->next;
 	}
 	return (0);
 }
 
-int	*ft_get_stack1(char **args, int len)
+t_stack	**ft_get_stack(char **nums)
 {
-	int	*stack;
-	int	i;
-	int	success;
+	t_stack	**top;
+	t_stack	*new;
+	int		i;
+	int		success;
 
-	if (len < 2)
+	if (nums == NULL)
 		return (NULL);
-	stack = ft_calloc(len - 1, sizeof(int));
-	if (!stack)
+	top = ft_calloc(1, sizeof(t_stack *));
+	if (!top)
 		return (NULL);
 	i = 0;
-	while (i < len - 1)
+	while (*nums != NULL)
 	{
-		stack[i] = ft_atoi(args[i + 1], &success);
-		if ((stack[i] == 0 && ((stack[i] + '0') != *args[i + 1]
-					|| ft_strlen(args[i + 1]) != 1))
-			|| ft_contains(stack[i], stack, i - 1))
+		new = ft_stack_new(ft_atoi(*nums, &success));
+		if (new == NULL || success == 0 || ft_contains(new->value, top))
 		{
-			free(stack);
-			return (NULL);
+			free(top);
+			return (util_free(new));
 		}
+		ft_stack_add_back(top, new);
 		i++;
+		nums++;
 	}
-	return (stack);
+	make_consecutive(top);
+	return (top);
 }

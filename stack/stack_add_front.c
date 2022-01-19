@@ -12,12 +12,18 @@
 
 #include "../headers/internal.h"
 
-void	ft_stackadd_front(t_stack **top, t_stack *new)
+/**
+ * Add a new entry to the stack above the current top
+ * 	and changes top to be the new entry
+ *
+ * @param	top	Current top
+ * @param	new	New entry to add
+ */
+void	ft_stack_add_front(t_stack **top, t_stack *new)
 {
 	if (!top || !new)
 		return ;
-	new->next = *top;
-	new->prev = (*top)->prev;
-	(*top)->prev = new;
-	*top = new;
+	ft_stack_add_back(top, new);
+	if ((*top)->next != NULL)
+		*top = (*top)->prev;
 }

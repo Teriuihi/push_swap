@@ -21,11 +21,11 @@
 #include "../headers/internal.h"
 #include "../headers/libft.h"
 
-t_stack	*ft_stacknew(int value)
+t_stack	*ft_stack_new(int value)
 {
-	t_stack *start;
+	t_stack	*start;
 
-	start = ft_calloc(sizeof(*start));
+	start = ft_calloc(1, sizeof(*start));
 	if (start == 0)
 		return (NULL);
 	start->value = value;

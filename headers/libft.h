@@ -21,4 +21,5 @@ int		ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *str, int *success);
 int		ft_isdigit(int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	**ft_split(char const *s, char c);
 #endif

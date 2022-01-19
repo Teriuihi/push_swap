@@ -13,7 +13,7 @@
 #include "headers/internal.h"
 #include "headers/libft.h"
 
-/** TODO change arrays to linked lists
+/**
  * Loads the arguments into the stack, checks if they are sorted and if not
  * 	sorts them.
  *
@@ -24,16 +24,19 @@
  */
 int	main(int len, char **args)
 {
-	int	*a;
-//	int	*b;
+	t_stack	**a;
+	t_stack	**b;
 
-	a = ft_get_stack1(args, len);
-	if (!a)
+	a = ft_get_stack(args, len);
+	b = ft_calloc(1, sizeof(t_stack *));
+	if (!a || !b)
 	{
 		ft_putstr_fd("Error\n", 1);
+		free(a);
+		free(b);
 		return (0);
 	}
-	if (ft_is_sorted(a, len - 1))
+	if (ft_is_sorted(a))
 		return (0);
 	return (0);
 }
