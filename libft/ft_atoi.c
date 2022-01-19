@@ -43,7 +43,7 @@ static int	convert(const char *str, int *success)
 
 	if (!ft_isdigit(*str))
 		return (0);
-	while (*str == '0')
+	while (*str == '0' && *(str + 1) != 0)
 		str++;
 	res = (*str - '0') * -1;
 	str++;
