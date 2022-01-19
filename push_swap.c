@@ -16,6 +16,7 @@
 t_stack	**get_a_stack(int len, char **args)
 {
 	char	**strs;
+	t_stack	**top;
 
 	if (len != 2)
 	{
@@ -28,7 +29,9 @@ t_stack	**get_a_stack(int len, char **args)
 		ft_putstr_fd("Error\n", 1);
 		return (NULL);
 	}
-	return (ft_get_stack(strs));
+	top = ft_get_stack(strs);
+	free(strs);
+	return (top);
 }
 
 /**
