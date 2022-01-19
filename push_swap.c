@@ -13,6 +13,24 @@
 #include "headers/internal.h"
 #include "headers/libft.h"
 
+t_stack	**get_a_stack(int len, char **args)
+{
+	char	**strs;
+
+	if (len != 2)
+	{
+		ft_putstr_fd("Error\n", 1);
+		return (NULL);
+	}
+	strs = ft_split(args[1], ' ');
+	if (strs == NULL)
+	{
+		ft_putstr_fd("Error\n", 1);
+		return (NULL);
+	}
+	return (ft_get_stack(strs));
+}
+
 /**
  * Loads the arguments into the stack, checks if they are sorted and if not
  * 	sorts them.
@@ -27,7 +45,7 @@ int	main(int len, char **args)
 	t_stack	**a;
 	t_stack	**b;
 
-	a = ft_get_stack(args, len);
+	a = get_a_stack(len, args);
 	b = ft_calloc(1, sizeof(t_stack *));
 	if (!a || !b)
 	{
