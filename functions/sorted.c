@@ -13,23 +13,22 @@
 #include <limits.h>
 #include "../headers/internal.h"
 
-int	ft_is_sorted(t_stack **top)
+int	ft_is_sorted(t_stack_data *x)
 {
 	t_stack	*tmp;
 	int		last;
+	int		i;
 
 	last = INT_MIN;
-	tmp = *top;
-	if (last > tmp->value)
-		return (0);
-	last = tmp->value;
-	tmp = tmp->next;
-	while (tmp != *top)
+	i = x->len;
+	tmp = *x->top;
+	while (i)
 	{
 		if (last > tmp->value)
 			return (0);
 		last = tmp->value;
 		tmp = tmp->next;
+		i--;
 	}
 	return (1);
 }

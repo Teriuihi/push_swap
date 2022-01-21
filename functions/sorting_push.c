@@ -13,35 +13,32 @@
 #include "../headers/internal.h"
 #include "../headers/libft.h"
 
-int	px(int **x1, int x1_len, int **x2, int x2_len)
+int	px(t_stack_data *x1, t_stack_data *x2)
 {
-	if (x2_len == 0)
-		return (1);
-	*x1 = ft_change_size(*x1, x1_len, x1_len + 1);
-	if (*x1 == NULL)
+	if (x2->len == 0)
 		return (0);
-	(*x1)[x1_len] = (*x2)[x2_len - 1];
-	*x2 = ft_change_size(*x2, x2_len, x2_len - 1);
-	if (*x2 == NULL)
-		return (0);
+	ft_stack_add_front(x1->top, *x2->top);
+	ft_stack_remove_top(x2->top);
+	x1->len++;
+	x2->len--;
 	return (1);
 }
 
-int	pa(int **a, int a_len, int **b, int b_len)
+int	pa(t_stack_data *a, t_stack_data *b)
 {
 	int	success;
 
-	success = px(a, a_len, b, b_len);
+	success = px(a, b);
 	if (success)
 		ft_putstr_fd("pa\n", 1);
 	return (success);
 }
 
-int	pb(int **a, int a_len, int **b, int b_len)
+int	pb(t_stack_data *a, t_stack_data *b)
 {
 	int	success;
 
-	success = px(b, b_len, a, a_len);
+	success = px(b, a);
 	if (success)
 		ft_putstr_fd("pb\n", 1);
 	return (success);

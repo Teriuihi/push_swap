@@ -22,20 +22,28 @@
  * @param	arr	array to sort
  * @param	len	length of array
  */
-void	small_sort(int *arr, int len)
+void	small_sort(t_stack_data *a)
 {
-	if (len == 2)
-		if (arr[0] > arr[1])
-			sa(arr, 2);
-	if (len != 3)
+	t_stack	*tmp;
+
+	tmp = *(a->top);
+	if (a->len == 2)
+		if (tmp->value > tmp->next->value)
+			sa(a);
+	if (a->len != 3)
 		return ;
-	if ((arr[0] > arr[1] && arr[1] > arr[2])
-		|| (arr[0] < arr[1] && arr[2] < arr[1] && arr[0] < arr[2]))
-		sa(arr, len);
-	if (arr[0] > arr[1] && arr[2] > arr[1] && arr[2] > arr[0])
-		sa(arr, len);
-	else if (arr[0] > arr[1] && arr[0] > arr[2] && arr[2] > arr[1])
-		ra(arr, len);
-	else if (arr[1] > arr[0] && arr[1] > arr[2] && arr[2] < arr[0])
-		rra(arr, len);
+	if ((tmp->value > tmp->next->value && tmp->next->value > tmp->prev->value)
+		|| (tmp->value < tmp->next->value && tmp->prev->value < tmp->next->value
+			&& tmp->value < tmp->prev->value))
+		sa(a);
+	if (tmp->value > tmp->next->value && tmp->prev->value > tmp->next->value
+		&& tmp->prev->value > tmp->value)
+		sa(a);
+	else if (tmp->value > tmp->next->value && tmp->value > tmp->prev->value
+		&& tmp->prev->value > tmp->next->value)
+		ra(a);
+	else if (tmp->next->value > tmp->value
+		&& tmp->next->value > tmp->prev->value
+		&& tmp->prev->value < tmp->value)
+		rra(a);
 }

@@ -21,28 +21,34 @@ typedef struct s_stack
 	int				value;
 }	t_stack;
 
-void	sa(int *a, int a_len);
-void	sb(int *b, int b_len);
-void	ss(int *a, int a_len, int *b, int b_len);
-int		pa(int **a, int a_len, int **b, int b_len);
-int		pb(int **a, int a_len, int **b, int b_len);
-void	ra(int *x, int x_len);
-void	rb(int *b, int b_len);
-void	rr(int *a, int a_len, int *b, int b_len);
-void	rra(int *a, int a_len);
-void	rrb(int *b, int b_len);
-void	rrr(int *a, int a_len, int *b, int b_len);
+typedef struct s_stack_data
+{
+	t_stack	**top;
+	int		len;
+}	t_stack_data;
 
-t_stack	**ft_get_stack(char **nums);
-int		ft_is_sorted(t_stack **top);
-int		*ft_change_size(int *arr, int ori_len, int new_len);
-void	small_sort(int *arr, int len);
-void	med_sort(int **arr, int len);
-void	*util_free(void *ptr);
-void	make_consecutive(t_stack **top);
+void			sa(t_stack_data *a);
+void			sb(t_stack_data *b);
+void			ss(t_stack_data *a, t_stack_data *b);
+int				pa(t_stack_data *a, t_stack_data *b);
+int				pb(t_stack_data *a, t_stack_data *b);
+void			ra(t_stack_data *a);
+void			rb(t_stack_data *b);
+void			rr(t_stack_data *a, t_stack_data *b);
+void			rra(t_stack_data *a);
+void			rrb(t_stack_data *b);
+void			rrr(t_stack_data *a, t_stack_data *b);
 
-t_stack	*ft_stack_new(int value);
-void	ft_stack_add_front(t_stack **top, t_stack *new);
-void	ft_stack_add_back(t_stack **top, t_stack *new);
-void	ft_stack_clear(t_stack **stack);
+t_stack_data	*ft_get_stack(char **nums, t_stack_data	*x);
+int				ft_is_sorted(t_stack_data *x);
+void			small_sort(t_stack_data *a);
+void			med_sort(t_stack_data *a, t_stack_data *b);
+void			*util_free(void *ptr);
+void			make_consecutive(t_stack **top);
+
+t_stack			*ft_stack_new(int value);
+void			ft_stack_add_front(t_stack **top, t_stack *new);
+void			ft_stack_add_back(t_stack **top, t_stack *new);
+void			ft_stack_clear(t_stack **stack);
+void			ft_stack_remove_top(t_stack **top);
 #endif

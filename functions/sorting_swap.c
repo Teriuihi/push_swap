@@ -11,33 +11,39 @@
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
+#include "../headers/internal.h"
 
-void	sx(int *x, int x_len)
+void	sx(t_stack **x)
 {
-	int	tmp;
+	t_stack	*tmp;
 
-	if (x_len < 2)
+	if ((*x)->next == NULL)
 		return ;
-	tmp = x[0];
-	x[0] = x[1];
-	x[1] = tmp;
+	tmp = (*x)->next;
+	(*x)->prev->next = tmp;
+	(*x)->next->prev = tmp;
+	tmp->prev = (*x)->prev;
+	(*x)->next = tmp->next;
+	(*x)->prev = tmp;
+	tmp->next = (*x);
+	*x = tmp;
 }
 
-void	sa(int *a, int a_len)
+void	sa(t_stack_data *a)
 {
-	sx(a, a_len);
+	sx(a->top);
 	ft_putstr_fd("sa\n", 1);
 }
 
-void	sb(int *b, int b_len)
+void	sb(t_stack_data *b)
 {
-	sx(b, b_len);
+	sx(b->top);
 	ft_putstr_fd("sb\n", 1);
 }
 
-void	ss(int *a, int a_len, int *b, int b_len)
+void	ss(t_stack_data *a, t_stack_data *b)
 {
-	sx(a, a_len);
-	sx(b, b_len);
+	sx(a->top);
+	sx(b->top);
 	ft_putstr_fd("ss\n", 1);
 }

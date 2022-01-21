@@ -17,7 +17,7 @@ int	ft_contains(int needle, t_stack **haystack)
 {
 	t_stack	*tmp;
 
-	if (*haystack == NULL)
+	if (haystack == NULL || *haystack == NULL)
 		return (0);
 	tmp = *haystack;
 	if (tmp->value == needle)
@@ -32,31 +32,31 @@ int	ft_contains(int needle, t_stack **haystack)
 	return (0);
 }
 
-t_stack	**ft_get_stack(char **nums)
+t_stack_data	*ft_get_stack(char **nums, t_stack_data	*x)
 {
-	t_stack	**top;
-	t_stack	*new;
-	int		i;
-	int		success;
+	t_stack			*new;
+	int				success;
 
 	if (nums == NULL)
 		return (NULL);
-	top = ft_calloc(1, sizeof(t_stack *));
-	if (!top)
+	if (!x)
 		return (NULL);
-	i = 0;
+	x->top = ft_calloc(1, sizeof(t_stack *));
+	if (!x->top)
+		return (util_free(x));
 	while (*nums != NULL)
 	{
 		new = ft_stack_new(ft_atoi(*nums, &success));
-		if (new == NULL || success == 0 || ft_contains(new->value, top))
+		if (new == NULL || success == 0 || ft_contains(new->value, x->top))
 		{
-			free(top);
+			free(x->top);
+			free(x);
 			return (util_free(new));
 		}
-		ft_stack_add_back(top, new);
-		i++;
+		ft_stack_add_back(x->top, new);
+		x->len++;
 		nums++;
 	}
-	make_consecutive(top);
-	return (top);
+	make_consecutive(x->top);
+	return (x);
 }

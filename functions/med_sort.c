@@ -12,99 +12,82 @@
 
 #include "../headers/internal.h"
 
-/** TODO comment
- * a_len has to be 4
- * @param a
- * @param a_len
- * @param b
- * @param b_len
+/**
+ * Find the most efficient way to rotate a stack the required amount of times
+ * 	and execute those rotations
+ *
+ * @param	a	stack data for a
+ * @param	rot	amount of rotations
  */
-void	something(int **a, int a_len, int **b, int b_len)
+void	rotate(t_stack_data *a, int rot)
 {
-	if (**b > *a[a_len - 1])
+	if (a->len - rot < a->len / 2)
+		rot = (a->len - rot) * -1;
+	while (rot != 0)
 	{
-		pa(a, a_len, b, b_len);
-		ra(*a, a_len + 1);
-	}
-	else if (**b < *a[1])
-	{
-		pa(a, a_len, b, b_len);
-		sa(*a, a_len + 1);
-	}
-	else if (**b < *a[2])
-	{
-		ra(*a, a_len);
-		pa(a, a_len, b, b_len);
-		sa(*a, a_len + 1);
-		rra(*a, a_len + 1);
-	}
-	else
-	{
-		rra(*a, a_len);
-		pa(a, a_len, b, b_len);
-		ra(*a, a_len + 1);
+		if (rot > 0)
+			ra(a);
+		else
+			rra(a);
+		if (rot > 0)
+			rot--;
+		else
+			rot++;
 	}
 }
 
-/** TODO comment
- * a_len has to be 3
- * @param a
- * @param a_len
- * @param b
- * @param b_len
- */
-void	func(int **a, int a_len, int **b, int b_len)
+void	fix(t_stack_data *a)
 {
-	if (**b < **a)
-		pa(a, a_len, b, b_len);
-	else if (**b > *a[a_len - 1])
+	t_stack	*cur;
+	int		rot;
+
+	rot = 0;
+	cur = *a->top;
+	while (cur->value != 0)
 	{
-		pa(a, a_len, b, b_len);
-		ra(*a, a_len + 1);
+		rot++;
+		cur = cur->next;
 	}
-	else
-	{
-		if (**b > *a[1])
-		{
-			pa(a, a_len, b, b_len);
-			sa(*a, a_len + 1);
-		}
-		else
-		{
-			rra(*a, a_len);
-			pa(a, a_len, b, b_len);
-			ra(*a, a_len + 1);
-		}
-	}
+	rotate(a, rot);
 }
 
-/** TODO comment and norm
- * Should only be called on arr with 4-5 entries
- * @param arr
+/**
+ * Move the top from b to a in the correct spot
+ * 	The list is not guaranteed to remain in the same position
+ *
+ * @param	a	stack data for stack a
+ * @param	b	stack data for stack b
  */
-void	med_sort(int **a, int a_len)
+void	top_b_to_a(t_stack_data *a, t_stack_data *b)
 {
-	int	*b;
-	int	b_len;
+	int		rot;
+	t_stack	*cur;
 
-	b = NULL;
-	b_len = 0;
-	pb(a, a_len, &b, 0);
-	b_len++;
-	a_len--;
-	while (a_len > 3)
+	rot = 0;
+	cur = (*a->top)->prev;
+	while (!(cur->value < (*b->top)->value
+			&& cur->next->value > (*b->top)->value))
 	{
-		pb(a, a_len, &b, 0);
-		b_len++;
-		a_len--;
+		rot++;
+		cur = cur->next;
 	}
-	small_sort(*a, a_len);
-	func(a, a_len, &b, b_len);
-	if ((b_len - 1) == 1)
-	{
-		if (*b < **a)
-			pa(a, a_len, &b, b_len - 1);
-		else
-			something(a, a_len, &b, b_len - 1);
-	}
+	rotate(a, rot);
+	pa(a, b);
+}
+
+/**
+ * Should only be called on stack with 4-5 entries
+ * Sort a small stack
+ *
+ * @param	a	stack data for stack a
+ * @param	b	stack data for stack b
+ */
+void	med_sort(t_stack_data *a, t_stack_data *b)
+{
+	while (a->len > 3)
+		pb(a, b);
+	small_sort(a);
+	while (b->len != 0)
+		top_b_to_a(a, b);
+	fix(a);
 }

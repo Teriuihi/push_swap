@@ -11,42 +11,30 @@
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
+#include "../headers/internal.h"
 
-void	rrx(int *x, int x_len)
+void	rrx(t_stack **x)
 {
-	int	tmp1;
-	int	tmp2;
-	int	i;
-
-	if (x_len < 2)
+	if ((*x)->prev == NULL)
 		return ;
-	i = 1;
-	tmp1 = x[0];
-	while (i < x_len)
-	{
-		tmp2 = x[i];
-		x[i] = tmp1;
-		tmp1 = tmp2;
-		i++;
-	}
-	x[0] = tmp1;
+	*x = (*x)->prev;
 }
 
-void	rra(int *a, int a_len)
+void	rra(t_stack_data *a)
 {
-	rrx(a, a_len);
+	rrx(a->top);
 	ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb(int *b, int b_len)
+void	rrb(t_stack_data *b)
 {
-	rrx(b, b_len);
+	rrx(b->top);
 	ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr(int *a, int a_len, int *b, int b_len)
+void	rrr(t_stack_data *a, t_stack_data *b)
 {
-	rrx(a, a_len);
-	rrx(b, b_len);
+	rrx(a->top);
+	rrx(b->top);
 	ft_putstr_fd("rrr\n", 1);
 }
