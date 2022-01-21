@@ -44,7 +44,7 @@ void	make_positive_consecutive(t_stack **top)
 	t_stack	*tmp;
 	int		prev;
 
-	prev = 1;
+	prev = 0;
 	iterator = *top;
 	tmp = next_closest(top, prev, 0);
 	if (tmp == NULL)
