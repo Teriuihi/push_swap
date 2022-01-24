@@ -72,6 +72,7 @@ static int	convert(const char *str, int *success)
 int	ft_atoi(const char *str, int *success)
 {
 	int	negative;
+	int	res;
 
 	*success = 0;
 	negative = -1;
@@ -83,5 +84,8 @@ int	ft_atoi(const char *str, int *success)
 			negative = 1;
 		str++;
 	}
-	return (convert(str, success) * negative);
+	res = convert(str, success);
+	if (res == -2147483648 && negative == -1)
+		*success = 0;
+	return (res * negative);
 }
