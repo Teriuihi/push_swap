@@ -23,7 +23,7 @@ void	sort(t_stack_data *a, t_stack_data *b)
 		big_sort(a, b);
 }
 
-t_stack_data	*get_b_stack()
+t_stack_data	*get_b_stack(void)
 {
 	t_stack_data	*b;
 
