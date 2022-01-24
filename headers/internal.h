@@ -45,6 +45,7 @@ int				ft_is_ordered(t_stack_data *x);
 void			small_sort(t_stack_data *a);
 void			med_sort(t_stack_data *a, t_stack_data *b);
 void			*util_free(void *ptr);
+void			stack_free(t_stack_data *x);
 void			rotate_stack(t_stack_data *x, int rot);
 void			fix_stack_order(t_stack_data *a);
 void			make_consecutive(t_stack **top);

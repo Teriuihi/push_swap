@@ -18,6 +18,25 @@ void	*util_free(void *ptr)
 	return (NULL);
 }
 
+void	stack_free(t_stack_data *x)
+{
+	t_stack	*tmp;
+	t_stack	*tmp_free;
+
+	if (!x)
+		return ;
+	tmp = *x->top;
+	while (x->len)
+	{
+		tmp_free = tmp;
+		tmp = tmp->next;
+		free(tmp_free);
+		x->len--;
+	}
+	free(x->top);
+	free(x);
+}
+
 /** todo move to util
  * Find the most efficient way to rotate a stack the required amount of times
  * 	and execute those rotations

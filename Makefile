@@ -4,8 +4,11 @@ CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
 
 MAIN=push_swap.c
-FUNCTIONS=validate.c sorted.c make_consecutive.c util.c
-STACK=stack_add_back.c stack_add_front.c stack_clear.c stack_new.c
+FUNCTIONS=validate.c sorted.c make_consecutive.c util.c med_sort.c \
+small_sort.c sorting_push.c sorting_reverse_rotate.c sorting_rotate.c \
+sorting_swap.c
+STACK=stack_add_back.c stack_add_front.c stack_clear.c stack_new.c \
+stack_remove_top.c
 LIBS=libft/libft.a
 LIB_FT=ft_calloc.c ft_atoi.c ft_isdigit.c ft_memset.c ft_memcpy.c \
 ft_putstr_fd.c ft_strlen.c

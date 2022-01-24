@@ -13,10 +13,37 @@
 #include "headers/internal.h"
 #include "headers/libft.h"
 
-t_stack	**get_a_stack(int len, char **args)
+void	sort(t_stack_data *a, t_stack_data *b)
 {
-	char	**strs;
-	t_stack	**top;
+	if (a->len <= 3)
+		small_sort(a);
+	else if (a->len <= 5)
+		med_sort(a, b);
+	else {
+		//TODO
+	}
+}
+
+t_stack_data	*get_b_stack()
+{
+	t_stack_data	*b;
+
+	b = ft_calloc(1, sizeof(t_stack *));
+	if (!b)
+		return (NULL);
+	b->top = ft_calloc(1, sizeof(t_stack *));
+	if (!b->top)
+	{
+		free(b);
+		return (NULL);
+	}
+	return (b);
+}
+
+t_stack_data	*get_a_stack(int len, char **args)
+{
+	char			**strs;
+	t_stack_data	*a;
 
 	if (len != 2)
 	{
@@ -29,9 +56,9 @@ t_stack	**get_a_stack(int len, char **args)
 		ft_putstr_fd("Error\n", 1);
 		return (NULL);
 	}
-	top = ft_get_stack(strs);
+	a = ft_get_stack(strs, ft_calloc(1, sizeof(t_stack_data)));
 	free(strs);
-	return (top);
+	return (a);
 }
 
 /**
@@ -45,19 +72,29 @@ t_stack	**get_a_stack(int len, char **args)
  */
 int	main(int len, char **args)
 {
-	t_stack	**a;
-	t_stack	**b;
+	t_stack_data	*a;
+	t_stack_data	*b;
 
-	a = get_a_stack(len, args);
-	b = ft_calloc(1, sizeof(t_stack *));
-	if (!a || !b)
+	if (len != 2)
 	{
 		ft_putstr_fd("Error\n", 1);
-		free(a);
-		free(b);
+		return (0);
+	}
+	a = get_a_stack(len, args);
+	if (!a)
+	{
+		ft_putstr_fd("Error\n", 1);
+		return (0);
+	}
+	b = get_b_stack();
+	if (!b)
+	{
+		stack_free(a);
+		ft_putstr_fd("Error\n", 1);
 		return (0);
 	}
 	if (ft_is_sorted(a))
 		return (0);
+	sort(a, b);
 	return (0);
 }
