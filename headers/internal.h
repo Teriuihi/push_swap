@@ -39,7 +39,7 @@ void			rra(t_stack_data *a);
 void			rrb(t_stack_data *b);
 void			rrr(t_stack_data *a, t_stack_data *b);
 
-t_stack_data	*ft_get_stack(char **nums, t_stack_data	*x);
+t_stack_data	*ft_get_stack(char **nums, int len, t_stack_data	*x);
 int				ft_is_sorted(t_stack_data *x);
 int				ft_is_ordered(t_stack_data *x);
 void			small_sort(t_stack_data *a);
@@ -49,6 +49,7 @@ void			stack_free(t_stack_data *x);
 void			rotate_stack(t_stack_data *x, int rot);
 void			fix_stack_order(t_stack_data *a);
 void			make_consecutive(t_stack **top);
+void			big_sort(t_stack_data *a, t_stack_data *b);
 
 t_stack			*ft_stack_new(int value);
 void			ft_stack_add_front(t_stack **top, t_stack *new);

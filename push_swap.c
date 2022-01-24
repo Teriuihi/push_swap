@@ -19,9 +19,8 @@ void	sort(t_stack_data *a, t_stack_data *b)
 		small_sort(a);
 	else if (a->len <= 5)
 		med_sort(a, b);
-	else {
-		//TODO
-	}
+	else
+		big_sort(a, b);
 }
 
 t_stack_data	*get_b_stack()
@@ -32,6 +31,7 @@ t_stack_data	*get_b_stack()
 	if (!b)
 		return (NULL);
 	b->top = ft_calloc(1, sizeof(t_stack *));
+	b->len = 0;
 	if (!b->top)
 	{
 		free(b);
@@ -42,22 +42,11 @@ t_stack_data	*get_b_stack()
 
 t_stack_data	*get_a_stack(int len, char **args)
 {
-	char			**strs;
 	t_stack_data	*a;
 
-	if (len != 2)
-	{
-		ft_putstr_fd("Error\n", 1);
+	if (len < 2)
 		return (NULL);
-	}
-	strs = ft_split(args[1], ' ');
-	if (strs == NULL)
-	{
-		ft_putstr_fd("Error\n", 1);
-		return (NULL);
-	}
-	a = ft_get_stack(strs, ft_calloc(1, sizeof(t_stack_data)));
-	free(strs);
+	a = ft_get_stack(args, len, ft_calloc(1, sizeof(t_stack_data)));
 	return (a);
 }
 
@@ -75,11 +64,6 @@ int	main(int len, char **args)
 	t_stack_data	*a;
 	t_stack_data	*b;
 
-	if (len != 2)
-	{
-		ft_putstr_fd("Error\n", 1);
-		return (0);
-	}
 	a = get_a_stack(len, args);
 	if (!a)
 	{
