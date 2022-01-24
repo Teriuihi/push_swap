@@ -26,8 +26,10 @@ t_stack	*ft_stack_new(int value)
 	t_stack	*start;
 
 	start = ft_calloc(1, sizeof(*start));
-	if (start == 0)
+	if (!start)
 		return (NULL);
 	start->value = value;
+	start->next = NULL;
+	start->prev = NULL;
 	return (start);
 }

@@ -15,18 +15,24 @@
 
 void	sx(t_stack **x)
 {
-	t_stack	*tmp;
+	t_stack	*old_top;
+	t_stack	*new_top;
+	t_stack	*old_prev;
+	t_stack	*new_next;
 
 	if ((*x)->next == NULL)
 		return ;
-	tmp = (*x)->next;
-	(*x)->prev->next = tmp;
-	(*x)->next->prev = tmp;
-	tmp->prev = (*x)->prev;
-	(*x)->next = tmp->next;
-	(*x)->prev = tmp;
-	tmp->next = (*x);
-	*x = tmp;
+	old_top = *x;
+	new_top = (*x)->next;
+	old_prev = (*x)->prev;
+	new_next = new_top->next;
+	new_top->next = old_top;
+	old_top->prev = new_top;
+	new_top->prev = old_prev;
+	old_prev->next = new_top;
+	new_next->prev = old_top;
+	old_top->next = new_next;
+	*x = new_top;
 }
 
 void	sa(t_stack_data *a)

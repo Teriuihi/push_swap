@@ -14,11 +14,11 @@
 
 /** todo comment and norm
  * Should only be called on arr with 3 entries
- * 	321 -> 231
- * 	132 -> 312
- * 	213 -> 123
- * 	312 -> 123
- * 	231 -> 123
+ * 	210 -> 120 sa
+ * 	021 -> 201 sa
+ * 	102 -> 012 sa
+ * 	201 -> 012 ra
+ * 	120 -> 012 rra
  * @param	arr	array to sort
  * @param	len	length of array
  */
@@ -36,6 +36,7 @@ void	small_sort(t_stack_data *a)
 		|| (tmp->value < tmp->next->value && tmp->prev->value < tmp->next->value
 			&& tmp->value < tmp->prev->value))
 		sa(a);
+	tmp = *(a->top);
 	if (tmp->value > tmp->next->value && tmp->prev->value > tmp->next->value
 		&& tmp->prev->value > tmp->value)
 		sa(a);

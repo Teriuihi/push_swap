@@ -15,10 +15,12 @@
 
 int	px(t_stack_data *x1, t_stack_data *x2)
 {
+	t_stack	*tmp;
+
 	if (x2->len == 0)
 		return (0);
-	ft_stack_add_front(x1->top, *x2->top);
-	ft_stack_remove_top(x2->top);
+	tmp = ft_stack_remove_top(x2->top);
+	ft_stack_add_front(x1->top, tmp);
 	x1->len++;
 	x2->len--;
 	return (1);

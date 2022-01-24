@@ -11,44 +11,44 @@
 /* ************************************************************************** */
 
 #include "../headers/internal.h"
+#include <limits.h>
 
-/**
- * Find the most efficient way to rotate a stack the required amount of times
- * 	and execute those rotations
- *
- * @param	a	stack data for a
- * @param	rot	amount of rotations
- */
-void	rotate(t_stack_data *a, int rot)
+int	get_bottom_val(t_stack_data *x)
 {
-	if (a->len - rot < a->len / 2)
-		rot = (a->len - rot) * -1;
-	while (rot != 0)
+	int		bottom;
+	int		i;
+	t_stack	*cur;
+
+	bottom = INT_MAX;
+	i = x->len;
+	cur = *x->top;
+	while (i)
 	{
-		if (rot > 0)
-			ra(a);
-		else
-			rra(a);
-		if (rot > 0)
-			rot--;
-		else
-			rot++;
+		if (bottom > cur->value)
+			bottom = cur->value;
+		cur = cur->next;
+		i--;
 	}
+	return (bottom);
 }
 
-void	fix(t_stack_data *a)
+int	get_top_val(t_stack_data *x)
 {
+	int		top;
+	int		i;
 	t_stack	*cur;
-	int		rot;
 
-	rot = 0;
-	cur = *a->top;
-	while (cur->value != 0)
+	top = 0;
+	i = x->len;
+	cur = *x->top;
+	while (i)
 	{
-		rot++;
+		if (top < cur->value)
+			top = cur->value;
 		cur = cur->next;
+		i--;
 	}
-	rotate(a, rot);
+	return (top);
 }
 
 /**
@@ -62,16 +62,24 @@ void	top_b_to_a(t_stack_data *a, t_stack_data *b)
 {
 	int		rot;
 	t_stack	*cur;
+	int		highest;
+	int		lowest;
 
 	rot = 0;
-	cur = (*a->top)->prev;
-	while (!(cur->value < (*b->top)->value
-			&& cur->next->value > (*b->top)->value))
+	cur = *a->top;
+	lowest = get_bottom_val(a);
+	highest = get_top_val(a);
+	while (1)
 	{
+		if ((cur->prev->value == highest && (*b->top)->value > highest)
+			|| (cur->prev->value == highest && (*b->top)->value < lowest)
+			|| (cur->value > (*b->top)->value
+				&& cur->prev->value < (*b->top)->value))
+			break ;
 		rot++;
 		cur = cur->next;
 	}
-	rotate(a, rot);
+	rotate_stack(a, rot);
 	pa(a, b);
 }
 
@@ -84,10 +92,17 @@ void	top_b_to_a(t_stack_data *a, t_stack_data *b)
  */
 void	med_sort(t_stack_data *a, t_stack_data *b)
 {
+	if (ft_is_sorted(a))
+		return ;
+	if (ft_is_ordered(a))
+	{
+		fix_stack_order(a);
+		return ;
+	}
 	while (a->len > 3)
 		pb(a, b);
 	small_sort(a);
 	while (b->len != 0)
 		top_b_to_a(a, b);
-	fix(a);
+	fix_stack_order(a);
 }

@@ -23,6 +23,8 @@ void	ft_stack_add_front(t_stack **top, t_stack *new)
 {
 	if (!top || !new)
 		return ;
+	new->next = NULL;
+	new->prev = NULL;
 	ft_stack_add_back(top, new);
 	if ((*top)->next != NULL)
 		*top = (*top)->prev;

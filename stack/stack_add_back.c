@@ -23,11 +23,8 @@ void	ft_stack_add_back(t_stack **top, t_stack *new)
 	if (!top || !new)
 		return ;
 	if (*top == NULL)
-	{
 		*top = new;
-		return ;
-	}
-	if ((*top)->next == NULL)
+	else if ((*top)->next == NULL || (*top)->next->value == (*top)->value)
 	{
 		(*top)->next = new;
 		(*top)->prev = new;
@@ -38,7 +35,7 @@ void	ft_stack_add_back(t_stack **top, t_stack *new)
 	{
 		new->next = *top;
 		new->prev = (*top)->prev;
-		(*top)->prev->next = new;
+		new->prev->next = new;
 		(*top)->prev = new;
 	}
 }

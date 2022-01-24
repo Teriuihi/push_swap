@@ -17,3 +17,47 @@ void	*util_free(void *ptr)
 	free(ptr);
 	return (NULL);
 }
+
+/** todo move to util
+ * Find the most efficient way to rotate a stack the required amount of times
+ * 	and execute those rotations
+ *
+ * @param	x	stack data for x
+ * @param	rot	amount of rotations
+ */
+void	rotate_stack(t_stack_data *x, int rot)
+{
+	if (x->len - rot < x->len / 2)
+		rot = (x->len - rot) * -1;
+	while (rot != 0)
+	{
+		if (rot > 0)
+			ra(x);
+		else
+			rra(x);
+		if (rot > 0)
+			rot--;
+		else
+			rot++;
+	}
+}
+
+/**
+ * Move top to the right position (0)
+ *
+ * @param	a	stack data for a
+ */
+void	fix_stack_order(t_stack_data *a)
+{
+	t_stack	*cur;
+	int		rot;
+
+	rot = 0;
+	cur = *a->top;
+	while (cur->value != 0)
+	{
+		rot++;
+		cur = cur->next;
+	}
+	rotate_stack(a, rot);
+}

@@ -12,13 +12,22 @@
 
 #include "../headers/internal.h"
 
-void	ft_stack_remove_top(t_stack **top)
+t_stack	*ft_stack_remove_top(t_stack **top)
 {
-	if ((*top)->next == NULL)
+	t_stack	*tmp;
+
+	tmp = *top;
+	if (tmp->next == NULL || tmp->next->value == tmp->value)
 	{
+		tmp->next = NULL;
+		tmp->prev = NULL;
 		*top = NULL;
-		return ;
+		return (tmp);
 	}
-	(*top)->next->prev = (*top)->prev;
-	(*top)->prev->next = (*top)->next;
+	tmp->next->prev = tmp->prev;
+	tmp->prev->next = tmp->next;
+	*top = tmp->next;
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	return (tmp);
 }
