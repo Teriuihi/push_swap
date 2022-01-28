@@ -23,33 +23,6 @@ void	sort(t_stack_data *a, t_stack_data *b)
 		big_sort(a, b);
 }
 
-t_stack_data	*get_b_stack(void)
-{
-	t_stack_data	*b;
-
-	b = ft_calloc(1, sizeof(t_stack *));
-	if (!b)
-		return (NULL);
-	b->top = ft_calloc(1, sizeof(t_stack *));
-	b->len = 0;
-	if (!b->top)
-	{
-		free(b);
-		return (NULL);
-	}
-	return (b);
-}
-
-t_stack_data	*get_a_stack(int len, char **args)
-{
-	t_stack_data	*a;
-
-	if (len < 2)
-		return (NULL);
-	a = ft_get_stack(args, len, ft_calloc(1, sizeof(t_stack_data)));
-	return (a);
-}
-
 /**
  * Loads the arguments into the stack, checks if they are sorted and if not
  * 	sorts them.

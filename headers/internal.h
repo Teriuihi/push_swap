@@ -39,6 +39,8 @@ void			rra(t_stack_data *a);
 void			rrb(t_stack_data *b);
 void			rrr(t_stack_data *a, t_stack_data *b);
 
+t_stack_data	*get_a_stack(int len, char **args);
+t_stack_data	*get_b_stack(void);
 t_stack_data	*ft_get_stack(char **nums, int len, t_stack_data	*x);
 int				ft_is_sorted(t_stack_data *x);
 int				ft_is_ordered(t_stack_data *x);
