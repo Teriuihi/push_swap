@@ -57,6 +57,6 @@ t_stack_data	*ft_get_stack(char **nums, int len, t_stack_data	*x)
 		x->len++;
 		i++;
 	}
-	make_consecutive(x->top);
+	make_consecutive(x);
 	return (x);
 }

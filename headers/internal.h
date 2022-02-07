@@ -50,7 +50,7 @@ void			*util_free(void *ptr);
 void			stack_free(t_stack_data *x);
 void			rotate_stack(t_stack_data *x, int rot);
 void			fix_stack_order(t_stack_data *a);
-void			make_consecutive(t_stack **top);
+void			make_consecutive(t_stack_data *x);
 void			big_sort(t_stack_data *a, t_stack_data *b);
 
 t_stack			*ft_stack_new(int value);

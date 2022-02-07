@@ -17,7 +17,7 @@ t_stack_data	*get_b_stack(void)
 {
 	t_stack_data	*b;
 
-	b = ft_calloc(1, sizeof(t_stack *));
+	b = ft_calloc(1, sizeof(t_stack_data));
 	if (!b)
 		return (NULL);
 	b->top = ft_calloc(1, sizeof(t_stack *));

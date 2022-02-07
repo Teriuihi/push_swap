@@ -115,9 +115,11 @@ void	make_zero_to_max(t_stack **top)
 	}
 }
 
-void	make_consecutive(t_stack **top)
+void	make_consecutive(t_stack_data *x)
 {
-	make_negative_consecutive(top);
-	make_positive_consecutive(top);
-	make_zero_to_max(top);
+	if (x->len <= 2)
+		return ;
+	make_negative_consecutive(x->top);
+	make_positive_consecutive(x->top);
+	make_zero_to_max(x->top);
 }

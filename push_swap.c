@@ -37,6 +37,8 @@ int	main(int len, char **args)
 	t_stack_data	*a;
 	t_stack_data	*b;
 
+	if (len == 1)
+		return (0);
 	a = get_a_stack(len, args);
 	if (!a)
 	{

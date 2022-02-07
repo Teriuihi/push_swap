@@ -1,6 +1,6 @@
 NAME=push_swap
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g -fsanitize=address
 RM=rm -f
 
 MAIN=push_swap.c

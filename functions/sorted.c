@@ -31,6 +31,8 @@ int	is_sorted_stack(t_stack *stack, int len)
 
 int	ft_is_sorted(t_stack_data *x)
 {
+	if (x->len <= 1)
+		return (1);
 	return (is_sorted_stack(*x->top, x->len));
 }
 
