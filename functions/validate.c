@@ -38,7 +38,7 @@ t_stack_data	*ft_get_stack(char **nums, int len, t_stack_data	*x)
 	int		success;
 	int		i;
 
-	i = 1;
+	i = 0;
 	if (!x)
 		return (NULL);
 	x->top = ft_calloc(1, sizeof(t_stack *));

@@ -34,7 +34,7 @@ t_stack_data	*get_a_stack(int len, char **args)
 {
 	t_stack_data	*a;
 
-	if (len < 2)
+	if (len < 1)
 		return (NULL);
 	a = ft_get_stack(args, len, ft_calloc(1, sizeof(t_stack_data)));
 	return (a);

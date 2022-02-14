@@ -6,7 +6,7 @@
 /*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/10 21:29:55 by sappunn       #+#    #+#                 */
-/*   Updated: 2021/12/10 21:29:55 by sappunn       ########   odam.nl         */
+/*   Updated: 2022/02/14 21:17:21 by sappunn       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,29 @@ void	sort(t_stack_data *a, t_stack_data *b)
 		med_sort(a, b);
 	else
 		big_sort(a, b);
+}
+
+t_stack_data	*get_a(char **args, int len)
+{
+	t_stack_data	*a;
+
+	if (len == 2)
+	{
+		args = ft_split(args[1], ' ');
+		if (!args)
+		{
+			ft_putstr_fd("Error\n", 1);
+			return (0);
+		}
+		len = 0;
+		while (args[len])
+			len++;
+		a = get_a_stack(len, args);
+		free(args);
+	}
+	else
+		a = get_a_stack(--len, ++args);
+	return (a);
 }
 
 /**
@@ -39,7 +62,7 @@ int	main(int len, char **args)
 
 	if (len == 1)
 		return (0);
-	a = get_a_stack(len, args);
+	a = get_a(args, len);
 	if (!a)
 	{
 		ft_putstr_fd("Error\n", 1);
